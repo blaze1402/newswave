@@ -1,5 +1,5 @@
 import { Component } from "react";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbar";
 import News from "./components/News";
 
 export default class App extends Component {
@@ -7,7 +7,7 @@ export default class App extends Component {
     return (
       <>
         <Navbar />
-        <News pageTitle="Top Headlines"/>
+        <News pageTitle="Top Headlines" />
       </>
     );
   }
