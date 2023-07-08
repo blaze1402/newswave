@@ -5,9 +5,9 @@ import PropTypes from 'prop-types'
 
 export default class News extends Component {
 
-  static propTypes = { pageTitle: PropTypes.string.isRequired, pageSize: PropTypes.number.isRequired, country: PropTypes.string }
+  static propTypes = { pageTitle: PropTypes.string.isRequired, pageSize: PropTypes.number.isRequired, country: PropTypes.string.isRequired, category: PropTypes.string.isRequired }
 
-  // static defaultProps = { pageTitle: "Top Headlines", pageSize: 8, country: "in" }
+  static defaultProps = { pageTitle: "Top Headlines", pageSize: 8, country: "in", category: "general" }
 
   constructor(props) {
     super(props);
@@ -20,7 +20,7 @@ export default class News extends Component {
 
   async componentDidMount() {
     this.setState({ loading: true })
-    let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=f4bea4030d2e4ec6a7493e3475ca116b&page=${this.state.page}&pageSize=${this.props.pageSize}`)
+    let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=f4bea4030d2e4ec6a7493e3475ca116b&page=${this.state.page}&pageSize=${this.props.pageSize}`)
     let parsedData = await data.json()
     this.setState({ articles: parsedData.articles, totalResults: parsedData.totalResults, loading: false })
 
@@ -28,7 +28,7 @@ export default class News extends Component {
 
   handlePrevClick = async () => {
     this.setState({ loading: true })
-    let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=f4bea4030d2e4ec6a7493e3475ca116b&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`)
+    let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=f4bea4030d2e4ec6a7493e3475ca116b&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`)
     let parsedData = await data.json()
     this.setState({ articles: parsedData.articles, page: this.state.page - 1, loading: false })
   }
@@ -36,7 +36,7 @@ export default class News extends Component {
   handleNextClick = async () => {
     this.setState({ loading: true })
     if (!(this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize))) {
-      let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&apiKey=f4bea4030d2e4ec6a7493e3475ca116b&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`)
+      let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=f4bea4030d2e4ec6a7493e3475ca116b&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`)
       let parsedData = await data.json()
       this.setState({ articles: parsedData.articles, page: this.state.page + 1, loading: false })
     }
