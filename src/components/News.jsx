@@ -48,16 +48,19 @@ export default class News extends Component {
         <h1 className='text-3xl font-semibold text-center'>NewsWave - {this.props.pageTitle}</h1>
         {this.state.loading && <Spinner />}
         <div className='flex flex-wrap justify-center space-x-2 my-2'>
-          {!this.state.loading && this.state.articles.map(({ title, description, url, urlToImage }) => {
+          {!this.state.loading && this.state.articles.map(({ title, description, url, urlToImage, author, publishedAt, source }) => {
             return <NewsItem key={url}
               title={title}
               imgUrl={urlToImage ? urlToImage : "https://images.unsplash.com/photo-1614028480987-73081d86a38b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"}
               description={description}
               newsUrl={url}
+              author={author}
+              date={publishedAt}
+              source={source}
             />
           })}
         </div>
-        <div className='flex justify-between mx-36'>
+        <div className='flex justify-around'>
           <button disabled={this.state.page <= 1} type='button' onClick={this.handlePrevClick} className='disabled:bg-gray-500 bg-gray-900 py-2 px-4 rounded text-white hover:bg-gray-800'>&larr; Previous</button>
           <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize)} type='button' onClick={this.handleNextClick} className='disabled:bg-gray-500 bg-gray-900 py-2 px-4 rounded text-white hover:bg-gray-800'>Next &rarr; </button>
         </div>

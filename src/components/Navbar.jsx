@@ -7,15 +7,17 @@ export class Navbar extends Component {
     return (
       <nav className="bg-gray-900 py-4">
         <div className="container mx-auto flex items-center justify-between">
-          <div className="text-white text-2xl font-bold flex">
-            <img className='mx-2' src={logo} width="30px" />
-            NewsWave</div>
+          <Link to="/">
+            <div className="text-white text-2xl font-bold flex">
+              <img className='mx-2' src={logo} width="30px" />
+              NewsWave</div>
+          </Link>
           <ul className="flex">
             <li>
               <Link to="/" className="py-3 px-2 text-white hover:text-gray-300">Home</Link>
             </li>
             <li className="relative group">
-              <Link to="/" className="py-3 px-2 text-white hover:text-gray-300">Categories</Link>
+              <Link className="py-3 px-2 text-white hover:text-gray-300">Categories</Link>
               <ul className="absolute hidden mt-2 w-48 bg-gray-800 text-white rounded-lg z-10 group-hover:block">
                 <Link to="/business"><li className="py-2 px-4 hover:text-gray-300">Business</li></Link>
                 <Link to="/entertainment"><li className="py-2 px-4 hover:text-gray-300">Entertainment</li></Link>
