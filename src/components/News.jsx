@@ -18,28 +18,25 @@ export default class News extends Component {
     }
   }
 
-  async componentDidMount() {
+  async updateNews() {
     this.setState({ loading: true })
     let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=f4bea4030d2e4ec6a7493e3475ca116b&page=${this.state.page}&pageSize=${this.props.pageSize}`)
     let parsedData = await data.json()
     this.setState({ articles: parsedData.articles, totalResults: parsedData.totalResults, loading: false })
+  }
 
+  async componentDidMount() {
+    this.updateNews()
   }
 
   handlePrevClick = async () => {
-    this.setState({ loading: true })
-    let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=f4bea4030d2e4ec6a7493e3475ca116b&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`)
-    let parsedData = await data.json()
-    this.setState({ articles: parsedData.articles, page: this.state.page - 1, loading: false })
+    this.setState({ page: this.state.page - 1 })
+    this.updateNews()
   }
 
   handleNextClick = async () => {
-    this.setState({ loading: true })
-    if (!(this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize))) {
-      let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=f4bea4030d2e4ec6a7493e3475ca116b&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`)
-      let parsedData = await data.json()
-      this.setState({ articles: parsedData.articles, page: this.state.page + 1, loading: false })
-    }
+    this.setState({ page: this.state.page + 1 })
+    this.updateNews()
   }
 
   render() {
