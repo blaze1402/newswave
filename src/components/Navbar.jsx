@@ -3,6 +3,12 @@ import logo from '/logo.svg'
 import { Link } from 'react-router-dom'
 
 export class Navbar extends Component {
+
+  handleSearch = (e) => {
+    e.preventDefault();
+    // Handle search functionality here
+  };
+
   render() {
     return (
       <nav className="bg-gray-900 py-4">
@@ -12,7 +18,7 @@ export class Navbar extends Component {
               <img className='mx-2' src={logo} width="30px" />
               NewsWave</div>
           </Link>
-          <ul className="flex">
+          <ul className="flex items-center">
             <li>
               <Link to="/" className="py-3 px-2 text-white hover:text-gray-300">Home</Link>
             </li>
@@ -33,6 +39,19 @@ export class Navbar extends Component {
             <li>
               <Link to="/contact" className="py-3 px-2 text-white hover:text-gray-300">Contact</Link>
             </li>
+            {/* <div className="mr-4">
+              <form onSubmit={this.handleSearch}>
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <button className='-ml-7 pt-2'><svg width="25" height="25" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7 7 7 0 0 1-7 7Z" />
+                </svg>
+                </button>
+              </form>
+            </div> */}
           </ul>
         </div>
       </nav>
