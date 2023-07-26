@@ -22,7 +22,7 @@ export default class News extends Component {
 
   async updateNews() {
     this.setState({ loading: true })
-    let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=f4bea4030d2e4ec6a7493e3475ca116b&page=${this.state.page}&pageSize=${this.props.pageSize}`)
+    let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${import.meta.env.VITE_API_KEY}&page=${this.state.page}&pageSize=${this.props.pageSize}`)
     let parsedData = await data.json()
     this.setState({ articles: parsedData.articles, totalResults: parsedData.totalResults, loading: false })
   }
@@ -38,7 +38,7 @@ export default class News extends Component {
   fetchData = async () => {
     this.setState({ page: this.state.page + 1 })
     this.setState({ loading: true })
-    let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=f4bea4030d2e4ec6a7493e3475ca116b&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`)
+    let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${import.meta.env.VITE_API_KEY}&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`)
     let parsedData = await data.json()
     this.setState({ articles: this.state.articles.concat(parsedData.articles), totalResults: parsedData.totalResults, loading: false })
   }
