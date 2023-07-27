@@ -11,7 +11,7 @@ export class Navbar extends Component {
 
   render() {
     return (
-      <nav className="bg-gray-900 py-4">
+      <nav className="sticky top-0 z-50 bg-gray-900 py-4">
         <div className="container mx-auto flex items-center justify-between">
           <Link to="/">
             <div className="text-white text-2xl font-bold flex">

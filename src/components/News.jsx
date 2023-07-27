@@ -21,6 +21,7 @@ export default class News extends Component {
   }
 
   async updateNews() {
+    window.scrollTo(0,0)
     this.setState({ loading: true })
     let data = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${import.meta.env.VITE_API_KEY}&page=${this.state.page}&pageSize=${this.props.pageSize}`)
     let parsedData = await data.json()
